@@ -1,13 +1,22 @@
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.util.Scanner;
 
 
 
 
 public class Main {
-	
+	public Scanner scanner;
+	public PrintStream printStream;
+
+	public Main(InputStream inputStream, PrintStream printStream) {
+		this.scanner = new Scanner(inputStream);
+		this.printStream = printStream;
+	}
+
+	public Main()
+	{
+
+	}
 public void everything() {
 
 		Scanner sc = new Scanner(System.in);
@@ -23,7 +32,8 @@ public void everything() {
 				System.out.println(
 						"\nChoose Room Type :\n1.Luxury Double Bedroom \n2.Deluxe Double Bedroom \n3.Luxury Single Bedroom \n4.Deluxe Single Bedroom \n");
 				choice2 = sc.nextInt();
-				Hotel.features(choice2);
+				Hotel obj = new Hotel();
+				obj.features(choice2);
 				break;
 			case 2:
 				System.out.println(
@@ -72,19 +82,20 @@ public void everything() {
 			case 6:
 				break x;
 
-				case 7:
-					authentication g = new authentication();
-					g.login();
 			default:
 				System.out.println("Invalid Option !!!");
 			}
 			System.out.println("\nContinue : (y/n)");
 			wantToContinue = sc.next().charAt(0);
+			if(wantToContinue == 'n')
+				System.exit(0);
 			if (!(wantToContinue == 'y' || wantToContinue == 'Y' || wantToContinue == 'n'
 					|| wantToContinue == 'N')) {
 				System.out.println("Invalid Option");
 				System.out.println("\nContinue : (y/n)");
 				wantToContinue = sc.next().charAt(0);
+				if(wantToContinue == 'n')
+					System.exit(0);
 			}
 
 		} while (wantToContinue == 'y' || wantToContinue == 'Y');
@@ -97,7 +108,7 @@ public void everything() {
 
 public static void main(String[] args) {
 
-	
+
 	int option;
 	do {
 		System.out.println("1) Login");
@@ -110,10 +121,16 @@ public static void main(String[] args) {
 
 	if(option==1)
 	{
+		Scanner sc = new Scanner(System.in);
 		authentication auth = new authentication();
-		auth.login();
+		System.out.println("Please enter Username");
+		String usename = sc.nextLine();
+
+		System.out.println("Please enter password");
+		String pasword = sc.nextLine();
+		auth.login(usename, pasword);
 	}
-	
+
 	else if(option ==2)
 	{
 		authentication auth = new authentication();

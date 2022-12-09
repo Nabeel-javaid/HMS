@@ -1,10 +1,20 @@
+import java.io.InputStream;
+import java.io.PrintStream;
 import java.util.Scanner;
 
 
 public class Hotel {
 	static Holder ob = new Holder();
 	static Scanner sc = new Scanner(System.in);
+	public Scanner scanner;
+	public PrintStream printStream;
 
+
+
+	public Hotel()
+	{
+
+	}
 	static void CustDetails(int i, int rn) {
 		String name, contact, gender; 
 		String name2 = null, contact2 = null ;
@@ -127,22 +137,23 @@ public class Hotel {
 		System.out.println("Room Booked");
 	}
 
-	static void features(int i) {
+	 public void features(int i) {
 		switch (i) {
+
 		case 1:
-			System.out.println("Number of double beds : 1\nAC : Yes\nFree breakfast : Yes\nCharge per day:4000 ");
+			System.out.print("Number of double beds : 1\nAC : Yes\nFree breakfast : Yes\nCharge per day:4000 ");
 			break;
 		case 2:
-			System.out.println("Number of double beds : 1\nAC : No\nFree breakfast : Yes\nCharge per day:3000  ");
+			System.out.print("Number of double beds : 1\nAC : No\nFree breakfast : Yes\nCharge per day:3000 ");
 			break;
 		case 3:
-			System.out.println("Number of single beds : 1\nAC : Yes\nFree breakfast : Yes\nCharge per day:2200  ");
+			System.out.print("Number of single beds : 1\nAC : Yes\nFree breakfast : Yes\nCharge per day:2200 ");
 			break;
 		case 4:
-			System.out.println("Number of single beds : 1\nAC : No\nFree breakfast : Yes\nCharge per day:1200 ");
+			System.out.print("Number of single beds : 1\nAC : No\nFree breakfast : Yes\nCharge per day:1200 ");
 			break;
 		default:
-			System.out.println("Enter valid option");
+			System.out.print("Enter valid option");
 			break;
 		}
 	}
@@ -178,7 +189,7 @@ public class Hotel {
 			System.out.println("Enter valid option");
 			break;
 		}
-		System.out.println("Number of rooms available : " + count);
+		System.out.print("Number of rooms available : " + count);
 	}
 
 	static void bill(int rn, int rtype) {
@@ -322,6 +333,11 @@ public class Hotel {
 		}
 	}
 
+
+	public void check()
+	{
+		System.out.print("Enter the room number");
+	}
 	static void order(int rn, int rtype) {
 		int i, q;
 		char wish;
@@ -349,10 +365,16 @@ public class Hotel {
 				}
 				System.out.println("Do you want to order anything else ? (y/n)");
 				wish = sc.next().charAt(0);
+				if(wish=='n' || wish=='N')
+				{
+					System.out.println("Order Placed");
+					break;
+				}
 			} while (wish == 'y' || wish == 'Y');
 		} catch (NullPointerException e) {
 			System.out.println("\nRoom not booked");
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			System.out.println("Cannot be done");
 		}
 	}

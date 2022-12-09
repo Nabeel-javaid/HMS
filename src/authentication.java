@@ -2,35 +2,21 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class authentication {
+	static ArrayList<String> usernamearr = new ArrayList<String>();
+	static ArrayList<String> passwordarr = new ArrayList<String>();
 
-
-//	String usernamearr[] = {"admin", "nabeel"};
-//	String passwordarr[] = {"admin", "javed"};
-
-	ArrayList<String> usernamearr = new ArrayList<String>();
-	ArrayList<String> passwordarr = new ArrayList<String>();
-
-	ArrayList<String> numberarr = new ArrayList<String>();
+	static ArrayList<String> numberarr = new ArrayList<String>();
 
 	public authentication() {
 		usernamearr.add("admin");
 		passwordarr.add("admin");
 		numberarr.add("+923435100977");
+		Scanner cin = new Scanner(System.in);
 	}
 
 	int count= 0;
-	public void login() {
-
-
-
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Please enter Username");
-		String username = sc.nextLine();
-
-		System.out.println("Please enter password");
-		String password = sc.nextLine();
+	public void login(String username, String password) {
 			for (int i = 0; i < usernamearr.size(); i++) {
-
 
 				if (usernamearr.get(i).equals(username)&& passwordarr.get(i).equals(password)) {
 					System.out.println("Login Successful");
@@ -45,18 +31,20 @@ public class authentication {
 				System.out.println("Login Failed");
 				count++;
 				System.out.println("You have " + (3 - count) + " attempts left");
+				Scanner sc = new Scanner(System.in);
+				System.out.println("Please enter Username");
+				String usename = sc.nextLine();
+
+				System.out.println("Please enter password");
+				String pasword = sc.nextLine();
 				if(count==3)
 				{
 					System.out.println("You have exceeded the number of attempts");
 					System.exit(0);
 				}
 				else
-					login();
+					login(usename, pasword);
 			}
-
-
-
-
 
 	public void signup(){
 
@@ -81,20 +69,17 @@ public class authentication {
 			usernamearr.add(user);
 			passwordarr.add(password);
 			numberarr.add(phonenumber);
-
 			System.out.println("Signup Successful");
-
-
-			for (int i = 0; i < usernamearr.size(); i++) {
-				System.out.print(usernamearr.get(i)+" ");
-				System.out.println(passwordarr.get(i));
-				System.out.println(numberarr.get(i));
-			}
 		}
 
 		System.out.println("Please Login to continue");
 		System.out.println("----------------------");
-		login();
+		System.out.println("Please enter Username");
+		String usename = sc.nextLine();
+
+		System.out.println("Please enter password");
+		String pasword = sc.nextLine();
+		login(usename, pasword);
 
 
 
